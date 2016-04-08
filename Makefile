@@ -1,5 +1,5 @@
 build:
-	docker build -t coffee .
+	docker build -t coffee-local .
 
 push:
-	docker push mor1/coffee:1.10.0
+	docker push mor1/alpine-coffeescript
