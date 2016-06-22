@@ -1,7 +1,7 @@
 FROM alpine:latest
 
-RUN apk add --update python3 && rm -rf /var/cache/apk/* \
+RUN apk --no-cache add --update                 \
+        python3                                 \
     && mkdir -p /cwd
 
 ENTRYPOINT ["python3"]
-CMD ["--help"]
