@@ -7,7 +7,7 @@ RUN apk --no-cache add --update                 \
     && gem install bundler                      \
     && bundle install
 
-RUN groupadd -r jekyll && useradd -r -g jekyll jekyll
+RUN addgroup jekyll && adduser -DG jekyll jekyll
 USER jekyll
 
 WORKDIR /cwd
