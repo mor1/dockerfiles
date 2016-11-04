@@ -1,15 +1,14 @@
-FROM alpine:latest
+FROM ruby:alpine
+MAINTAINER Richard Mortier <mort@cantab.net>
 
-RUN apk --no-cache add --update                             \
-        ruby                                                \
-        build-base                                          \
-        ruby-dev                                            \
-        libffi-dev                                          \
-        libxml2-dev                                         \
-        zlib-dev                                            \
-        libxslt-dev                                         \
-    && gem install -N nokogiri -- --use-system-libraries    \
-    && gem install -N github-pages                          \
-    && mkdir -p /cwd
+COPY Gemfile .
+RUN apk --no-cache add --update                 \
+      build-base                                \
+    && gem install bundler                      \
+    && bundle install
 
+RUN groupadd -r jekyll && useradd -r -g jekyll jekyll
+USER jekyll
+
+WORKDIR /cwd
 ENTRYPOINT ["jekyll"]
