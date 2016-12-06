@@ -1,1 +1,0 @@
-# Alpine GNU Awk Container
