@@ -1,1 +1,0 @@
-# Alpine stedolan / jq Container
