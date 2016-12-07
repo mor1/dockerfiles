@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER Richard Mortier <mort@cantab.net>
 
 RUN apt-get update && apt-get upgrade -y \
