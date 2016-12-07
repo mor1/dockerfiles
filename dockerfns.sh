@@ -26,7 +26,6 @@ function docker-clean {
 }
 
 function d {
-#    docker pull "$1" > /dev/null
     docker run -ti --rm -v "$(pwd -P)":/cwd -w /cwd $DARGS "$@"
 }
 
@@ -58,62 +57,18 @@ function ubuntu {
 
 ## containerised apps
 
-function casperjs {
-    d mor1/casperjs:latest "$@"
-}
-
-function coffee {
-    d mor1/alpine-coffeescript:latest "$@"
-}
-
-function dos2unix {
-    d mor1/alpine-dos2unix:latest "$@"
-}
-
-function gawk {
-    d mor1/alpine-gawk:latest "$@"
-}
-
-function jekyll {
-    d mor1/jekyll:latest "$@"
-}
-
-function jhead {
-    d mor1/alpine-jhead:latest "$@"
-}
-
-function jq {
-    d mor1/alpine-jq:latest "$@"
-}
-
-function lessc {
-    d mor1/lessc:latest "$@"
-}
-
-function lilypond {
-    d markauskas/lilypond lilypond "$@"
-}
-
-function lynx {
-    d mor1/alpine-lynx "$@"
-}
-
-function pandoc {
-    d -v ~/.pandoc:/root/.pandoc mor1/pandoc:latest "$@"
-}
-
-function phantomjs {
-    d mor1/phantomjs:latest "$@"
-}
-
-function poly {
-    d mor1/polyml:latest "$@"
-}
-
-function python3 {
-    d mor1/alpine-python3:latest "$@"
-}
-
-function unzip {
-    d mor1/alpine-unzip:latest "$@"
-}
+function casperjs  { d mor1/casperjs:latest         "$@" ;}
+function coffee    { d mor1/coffeescript:latest     "$@" ;}
+function dos2unix  { d mor1/dos2unix:latest         "$@" ;}
+function gawk      { d mor1/gawk:latest             "$@" ;}
+function jekyll    { d mor1/jekyll:latest           "$@" ;}
+function jhead     { d mor1/jhead:latest            "$@" ;}
+function jq        { d mor1/jq:latest               "$@" ;}
+function lessc     { d mor1/lessc:latest            "$@" ;}
+function lilypond  { d markauskas/lilypond lilypond "$@" ;}
+function lynx      { d mor1/lynx:latest             "$@" ;}
+function pandoc    { d -v ~/.pandoc:/root/.pandoc mor1/pandoc:latest "$@" ;}
+function phantomjs { d mor1/phantomjs:latest        "$@" ;}
+function poly      { d mor1/polyml:latest           "$@" ;}
+function python3   { d mor1/python3:latest          "$@" ;}
+function unzip     { d mor1/unzip:latest            "$@" ;}
