@@ -4,6 +4,8 @@
 #
 # Create backups; executed from cronjob inside gitlab container
 
+set -e
+
 umask 0077
 
 ## builtin gitlab data backup

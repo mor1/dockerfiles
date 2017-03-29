@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Copyright (C) 2017 Richard Mortier <mort@cantab.net>
+#
+# Extract latest backup ready to rsync to filer
+
+set -e
+
+cd /data/gitlab/backups
+
+rm -rf sync
+mkdir sync
+
+for fs in 'etc-gitlab-*' 'etc-ssh-*' '*_gitlab_backup' ; do
+    LATEST=$(ls -At $D/tarballs/$fs.tar | head -n1)
+    tar -x -f $LATEST -C sync -m
+done

@@ -7,29 +7,19 @@
 
 set -e
 
+H=svr-rmm1002-git.cl.cam.ac.uk
 D=/usr/groups/netos/gitlab
 
-rsync                                                   \
-      --archive                                         \
-      --checksum                                        \
-      --compress                                        \
-      --delete                                          \
-      --recursive                                       \
-      --rsh=ssh                                         \
-      --times                                           \
-      --verbose                                         \
-    svr-rmm1002-git.cl.cam.ac.uk:/data/gitlab/backups/  \
-    $D/tarballs
+rsync                                           \
+      --archive                                 \
+      --checksum                                \
+      --compress                                \
+      --delete                                  \
+      --recursive                               \
+      --rsh=ssh                                 \
+      --times                                   \
+      --verbose                                 \
+    $H:/data/gitlab/backups/sync                \
+    $D
 
-chown -R rmm1002:netos $D/tarballs
-
-mv $D/data $D/data.old || true
-mkdir -p $D/data
-
-for fs in 'etc-gitlab-*' 'etc-ssh-*' '*_gitlab_backup' ; do
-    LATEST=$(ls -At $D/tarballs/$fs.tar | head -n1)
-    echo $LATEST
-#    tar -x -f $LATEST -C $D/data -m
-done
-
-rm -rf $D/data.old
+chown -R rmm1002:netos $D/sync
