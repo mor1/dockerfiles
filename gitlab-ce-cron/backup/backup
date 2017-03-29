@@ -2,15 +2,27 @@
 #
 # Copyright (C) 2016-2017 Richard Mortier <mort@cantab.net>
 #
-# Create backups; executed from cronjob inside gitlab container
+# Create backups and extract to ./sync subdirectory.
+#
+# Executed inside gitlab container from cron job on host
 
 set -e
 
-umask 0007
+umask 0077
+
+cd /var/opt/gitlab/backups
 
 ## builtin gitlab data backup
 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
+LATEST=$(ls -At *_gitlab_backup.tar | head -n1)
+tar -x -f $LATEST -C sync/gitlab -m
 
 ## manually backup gitlab config
-tar cf /var/opt/gitlab/backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
+tar cf $(date "+etc-gitlab-%s.tar") -C / etc/gitlab
+LATEST=$(ls -At etc-gitlab-*.tar | head -n1)
+tar -x -f $LATEST -C sync -m
+
+## manually backup container ssh config
 tar cf /var/opt/gitlab/backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
+LATEST=$(ls -At etc-ssh-*.tar | head -n1)
+tar -x -f $LATEST -C sync -m
