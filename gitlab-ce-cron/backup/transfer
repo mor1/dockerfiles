@@ -24,6 +24,12 @@ rsync                                                   \
 chown -R rmm1002:netos $D/tarballs
 
 mv $D/data $D/data.old || true
-mkdir -p $D/data && cd $D/data
-tar -x -f $LATEST -m
+mkdir -p $D/data
+
+for fs in 'etc-gitlab-*' 'etc-ssh-*' '*_gitlab_backup' ; do
+    LATEST=$(ls -At $D/tarballs/$fs.tar | head -n1)
+    echo $LATEST
+#    tar -x -f $LATEST -C $D/data -m
+done
+
 rm -rf $D/data.old
