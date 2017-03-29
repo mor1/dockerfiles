@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Copyright (C) 2016-2017 Richard Mortier <mort@cantab.net>
+#
+# Create backups; executed from cronjob inside gitlab container
+
+umask 0077
+
+## builtin gitlab data backup
+/opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
+
+## manually backup gitlab config
+tar cf /var/opt/gitlab/backups/\$(date "+etc-gitlab-\%s.tar") -C / etc/gitlab
+tar cf /var/opt/gitlab/backups/\$(date "+etc-ssh-\%s.tar") -C / etc/ssh

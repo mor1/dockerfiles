@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Copyright (C) 2017 Richard Mortier <mort@cantab.net>
+#
+# Installs the `backup` script as a cronjob
+
+docker exec -i gitlab /usr/bin/crontab <<_EOF
+15 04 * * * /backup/run
+30 04 * * * chown rmm1002:rmm1002 /data/gitlab/backups/*.tar
+_EOF
