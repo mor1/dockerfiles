@@ -27,3 +27,6 @@ tar -x -f $LATEST -C sync -m
 tar cf backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
 LATEST=$(ls -At backups/etc-ssh-*.tar | head -n1)
 tar -x -f $LATEST -C sync -m
+
+## finally, fix the permissions on everything
+chown -R $HOST_UID:$HOST_GID sync backups
