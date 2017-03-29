@@ -5,6 +5,10 @@
 # Here for completeness! Runs on the cron server (receiver) to transfer tarballs
 # and extract into backed up filespace.
 
+set -e
+
+D=/usr/groups/netos/gitlab
+
 rsync                                                   \
       --archive                                         \
       --checksum                                        \
@@ -15,5 +19,11 @@ rsync                                                   \
       --times                                           \
       --verbose                                         \
     svr-rmm1002-git.cl.cam.ac.uk:/data/gitlab/backups/  \
-    /usr/groups/netos/tarballs
+    $D/tarballs
 
+chown -R rmm1002:netos $D/tarballs
+
+mv $D/data $D/data.old
+mkdir -p $D/data
+tar -x -f $LATEST -C $D/data -m
+rm -rf $D/data.old
