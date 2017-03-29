@@ -10,19 +10,20 @@ set -e
 
 umask 0077
 
-cd /var/opt/gitlab/backups
+cd /var/opt/gitlab
+mkdir -p sync/gitlab
 
 ## builtin gitlab data backup
 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
-LATEST=$(ls -At *_gitlab_backup.tar | head -n1)
+LATEST=$(ls -At backups/*_gitlab_backup.tar | head -n1)
 tar -x -f $LATEST -C sync/gitlab -m
 
 ## manually backup gitlab config
-tar cf $(date "+etc-gitlab-%s.tar") -C / etc/gitlab
-LATEST=$(ls -At etc-gitlab-*.tar | head -n1)
+tar cf backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
+LATEST=$(ls -At backups/etc-gitlab-*.tar | head -n1)
 tar -x -f $LATEST -C sync -m
 
 ## manually backup container ssh config
-tar cf /var/opt/gitlab/backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
-LATEST=$(ls -At etc-ssh-*.tar | head -n1)
+tar cf backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
+LATEST=$(ls -At backups/etc-ssh-*.tar | head -n1)
 tar -x -f $LATEST -C sync -m
