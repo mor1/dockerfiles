@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Copyright (C) 2017 Richard Mortier <mort@cantab.net>
+#
+# Here for completeness! Runs on the cron server (receiver) to transfer tarballs
+# and extract into backed up filespace.
+
+rsync                                                   \
+      --archive                                         \
+      --checksum                                        \
+      --compress                                        \
+      --delete                                          \
+      --recursive                                       \
+      --rsh=ssh                                         \
+      --times                                           \
+      --verbose                                         \
+    svr-rmm1002-git.cl.cam.ac.uk:/data/gitlab/backups/  \
+    /usr/groups/netos/tarballs
+
