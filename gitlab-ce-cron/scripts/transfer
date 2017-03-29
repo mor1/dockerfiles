@@ -19,7 +19,7 @@ rsync                                           \
       --rsh=ssh                                 \
       --times                                   \
       --verbose                                 \
-    $H:/data/gitlab/backups/sync                \
+    $H:/data/gitlab/sync                        \
     $D
 
 chown -R rmm1002:netos $D/sync

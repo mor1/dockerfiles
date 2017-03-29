@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Copyright (C) 2017 Richard Mortier <mort@cantab.net>
-#
-# Installs the `extract` script as a cronjob. Run on the host.
-
-/usr/bin/crontab <<_EOF
-45 04 * * * $(pwd -P)/extract
-_EOF
