@@ -9,9 +9,13 @@ set -e
 cd /data/gitlab/backups
 
 rm -rf sync
-mkdir sync
+mkdir -p sync/gitlab
 
-for fs in 'etc-gitlab-*' 'etc-ssh-*' '*_gitlab_backup' ; do
-    LATEST=$(ls -At $D/tarballs/$fs.tar | head -n1)
-    tar -x -f $LATEST -C sync -m
-done
+LATEST=$(ls -At etc-gitlab-*.tar | head -n1)
+tar -x -f $LATEST -C sync -m
+
+LATEST=$(ls -At etc-ssh-*.tar | head -n1)
+tar -x -f $LATEST -C sync -m
+
+LATEST=$(ls -At *_gitlab_backup.tar | head -n1)
+tar -x -f $LATEST -C sync/gitlab -m
