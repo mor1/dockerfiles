@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Copyright (C) 2017 Richard Mortier <mort@cantab.net>
-#
-# Installs the `transfer` script as a cronjob. Run on the cron server.
-
-/usr/bin/crontab <<_EOF
-15 05 * * * $(pwd -P)/transfer
-_EOF
