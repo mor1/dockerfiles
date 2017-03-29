@@ -6,11 +6,11 @@
 
 set -e
 
-umask 0077
+umask 0007
 
 ## builtin gitlab data backup
 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
 
 ## manually backup gitlab config
-tar cf /var/opt/gitlab/backups/\$(date "+etc-gitlab-\%s.tar") -C / etc/gitlab
-tar cf /var/opt/gitlab/backups/\$(date "+etc-ssh-\%s.tar") -C / etc/ssh
+tar cf /var/opt/gitlab/backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
+tar cf /var/opt/gitlab/backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
