@@ -4,6 +4,7 @@
 # Some useful `make` targets
 
 S=128.232.98.226
+H=gitlab.srg.cl.cam.ac.uk
 
 shell:
 	docker exec -it gitlab /bin/bash
@@ -17,7 +18,7 @@ clean: stop
 start:
 	docker pull mor1/gitlab-ce-cron:latest
 	docker run --detach \
-	     --hostname gitlab.ocaml.io \
+	     --hostname $H \
 	     --publish $S:443:443 \
 	     --publish $S:80:80 \
 	     --publish $S:2222:22 \
