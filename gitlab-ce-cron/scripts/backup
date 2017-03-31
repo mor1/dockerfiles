@@ -29,4 +29,4 @@ LATEST=$(ls -At backups/etc-ssh-*.tar | head -n1)
 tar -x -f $LATEST -C sync -m
 
 ## finally, fix the permissions on everything
-chown -R $HOST_UID:$HOST_GID sync backups
+chown -R $HOST_UID:$HOST_GID sync
