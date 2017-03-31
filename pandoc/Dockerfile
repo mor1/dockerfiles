@@ -1,4 +1,4 @@
-FROM haskell:8.0.1
+FROM haskell:8
 MAINTAINER Richard Mortier <mort@cantab.net>
 
 RUN apt-get update -y \
