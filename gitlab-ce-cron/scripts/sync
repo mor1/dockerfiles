@@ -16,7 +16,7 @@ rsync                                           \
       --compress                                \
       --delete                                  \
       --recursive                               \
-      --rsh=ssh                                 \
+      --rsh="ssh -i ~/.ssh/gitlabrsync-key"     \
       --times                                   \
       --verbose                                 \
     $H:/data/gitlab/sync                        \
