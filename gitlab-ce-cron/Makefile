@@ -37,3 +37,6 @@ logs:
 
 backup:
 	docker exec -i gitlab /scripts/backup
+
+sync:
+	$$(pwd -P)/scripts/sync
