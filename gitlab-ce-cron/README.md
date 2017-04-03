@@ -2,9 +2,11 @@
 
 ## Configuration
 
-Backed up under `/usr/groups/netos/gitlab`. See the <Makefile> for some handy
+Backed up under `/usr/groups/netos/gitlab`. See the [Makefile][] for some handy
 targets on the deployment host (`gitlab.srg.cl.cam.ac.uk`). Build and push the
-Docker image in the usual way, cf [../Makefile](../Makefile).
+Docker image in the usual way, cf [../Makefile][Makefile].
+
+[Makefile]: ../Makefile
 
 ## Backup
 
