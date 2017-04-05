@@ -5,6 +5,7 @@
 
 S=128.232.98.226
 H=gitlab.srg.cl.cam.ac.uk
+EXEC=docker exec -i gitlab
 
 shell:
 	docker exec -it gitlab /bin/bash
@@ -36,7 +37,10 @@ logs:
 	docker logs -t -f gitlab
 
 backup:
-	docker exec -i gitlab /scripts/backup
+	$(EXEC) /scripts/backup
 
 sync:
 	$$(pwd -P)/scripts/sync
+
+reconfigure:
+	$(EXEC) gitlab-ctl reconfigure
