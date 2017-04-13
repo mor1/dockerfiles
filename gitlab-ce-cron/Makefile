@@ -5,10 +5,10 @@
 
 S=128.232.98.226
 H=gitlab.srg.cl.cam.ac.uk
-EXEC=docker exec -i gitlab
+EXEC=docker exec -it gitlab
 
 shell:
-	docker exec -it gitlab /bin/bash
+	$(EXEC) /bin/bash
 
 stop:
 	docker stop gitlab
@@ -44,3 +44,6 @@ sync:
 
 reconfigure:
 	$(EXEC) gitlab-ctl reconfigure
+
+console:
+	$(EXEC) gitlab-rails console
