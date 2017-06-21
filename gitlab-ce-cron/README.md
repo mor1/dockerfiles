@@ -18,3 +18,8 @@ Per advice from Piete,
 
 In both cases, install the two cronjobs using the `.install` scripts provided.
 This minimises churn on the filer: unchanged files are made visible.
+
+## Known Good
+
+  * FROM gitlab/gitlab-ce:9.1.2-ce.0
+  * FROM gitlab/gitlab-ce:9.0.0-ce.0
