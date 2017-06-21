@@ -5,22 +5,22 @@
 .PHONY: %-build %-push all
 
 all: \
-  alpine-coffeescript/ \
-  alpine-dos2unix/ \
-  alpine-gawk/ \
-  alpine-jq/ \
-  alpine-lessc/ \
-  alpine-lynx/ \
-  alpine-python3/ \
-  alpine-unzip/ \
   casperjs/ \
+  coffeescript/ \
+  dos2unix/ \
+  gawk/ \
   gitlab-ce-cron/ \
   jekyll/ \
   jhead/ \
+  jq/ \
+  lessc/ \
+  lynx/ \
   node/ \
   pandoc/ \
   phantomjs/ \
   polyml/ \
+  python3/ \
+  unzip/ \
   wget/
 
 %-build:
