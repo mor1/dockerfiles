@@ -68,6 +68,7 @@ function lessc     { d mor1/lessc:latest            "$@" ;}
 function lilypond  { d markauskas/lilypond lilypond "$@" ;}
 function lynx      { d mor1/lynx:latest             "$@" ;}
 function pandoc    { d -v ~/.pandoc:/root/.pandoc mor1/pandoc:latest "$@" ;}
+function pdftk     { d mor1/pdftk:latest            "$@" ;}
 function phantomjs { d mor1/phantomjs:latest        "$@" ;}
 function poly      { d mor1/polyml:latest           "$@" ;}
 function python3   { d mor1/python3:latest          "$@" ;}
