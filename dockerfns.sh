@@ -72,5 +72,6 @@ function pdftk     { d mor1/pdftk:latest            "$@" ;}
 function phantomjs { d mor1/phantomjs:latest        "$@" ;}
 function poly      { d mor1/polyml:latest           "$@" ;}
 function python3   { d mor1/python3:latest          "$@" ;}
+function travis    { d mor1/travis:latest           "$@" ;}
 function unzip     { d mor1/unzip:latest            "$@" ;}
 function wget      { d mor1/wget:latest             "$@" ;}
