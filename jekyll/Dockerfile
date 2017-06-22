@@ -9,8 +9,5 @@ RUN apk --no-cache add --update                 \
 COPY Gemfile .
 RUN bundle install
 
-RUN addgroup jekyll && adduser -DG jekyll jekyll
-USER jekyll
-
 WORKDIR /cwd
 ENTRYPOINT ["jekyll"]
