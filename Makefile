@@ -25,11 +25,13 @@ all: \
 
 %-build:
 	cd $* && docker build -t mor1/$* .
+	@echo "=== $@ done!"
 
 %-push: %-build
 	docker push mor1/$*
+	@echo "=== $@ done!"
 
 %/: %-build %-push FORCE
-	@echo "=== $< done!"
+	@echo "=== $@ done!"
 
 FORCE:
