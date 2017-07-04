@@ -26,7 +26,11 @@ function docker-clean {
 }
 
 function d {
-    docker run -ti --rm -v "$(pwd -P)":/cwd -w /cwd $DARGS "$@"
+    docker run --tty --interactive --rm \
+           --user $(id -u) \
+           --volume "$(pwd -P)":/cwd \
+           --workdir /cwd \
+           $DARGS "$@"
 }
 
 ## base distros
