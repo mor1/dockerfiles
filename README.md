@@ -1,6 +1,6 @@
 # Mort's Dockerfiles
 
-Wrap up some common utilities in containers. 
+Wrap up some common utilities in containers.
 
 `make` will build and push all of them.
 
