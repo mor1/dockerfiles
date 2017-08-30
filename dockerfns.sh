@@ -65,6 +65,7 @@ function casperjs  { d mor1/casperjs:latest         "$@" ;}
 function coffee    { d mor1/coffeescript:latest     "$@" ;}
 function dos2unix  { d mor1/dos2unix:latest         "$@" ;}
 function gawk      { d mor1/gawk:latest             "$@" ;}
+function ghi       { d mor1/ghi:latest              "$@" ;}
 function jekyll    { d mor1/jekyll:latest           "$@" ;}
 function jhead     { d mor1/jhead:latest            "$@" ;}
 function jq        { d mor1/jq:latest               "$@" ;}
