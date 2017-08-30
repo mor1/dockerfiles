@@ -80,3 +80,4 @@ function python3   { d mor1/python3:latest          "$@" ;}
 function travis    { d mor1/travis:latest           "$@" ;}
 function unzip     { d mor1/unzip:latest            "$@" ;}
 function wget      { d mor1/wget:latest             "$@" ;}
+function yaml      { d mor1/ruamel:latest           "$@" ;}
