@@ -26,8 +26,7 @@ function docker-clean {
 }
 
 function d {
-    docker run --tty --interactive --rm \
-           --user $(id -u) \
+    docker run --interactive --tty --rm \
            --volume "$(pwd -P)":/cwd \
            --workdir /cwd \
            $DARGS "$@"
