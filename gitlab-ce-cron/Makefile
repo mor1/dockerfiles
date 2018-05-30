@@ -22,7 +22,7 @@ start:
 	     --hostname $H \
 	     --publish $S:443:443 \
 	     --publish $S:80:80 \
-	     --publish $S:2222:22 \
+	     --publish $S:22:22 \
 	     --name gitlab \
 	     --restart always \
 	     --volume /data/gitlab/config:/etc/gitlab \
