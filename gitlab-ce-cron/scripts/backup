@@ -17,19 +17,19 @@ mkdir -p sync/gitlab
 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
 LATEST=$(ls -At backups/*_gitlab_backup.tar | head -n1)
 tar -x -f $LATEST -C sync/gitlab -m
-bzip2 -v9 $LATEST
+rm $LATEST
 
 ## manually backup gitlab config
 tar cf backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
 LATEST=$(ls -At backups/etc-gitlab-*.tar | head -n1)
 tar -x -f $LATEST -C sync -m
-bzip2 -v9 $LATEST
+rm $LATEST
 
 ## manually backup container ssh config
 tar cf backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
 LATEST=$(ls -At backups/etc-ssh-*.tar | head -n1)
 tar -x -f $LATEST -C sync -m
-bzip2 -v9 $LATEST
+rm $LATEST
 
 ## finally, fix the permissions on everything
 chown -R $HOST_UID:$HOST_GID sync
