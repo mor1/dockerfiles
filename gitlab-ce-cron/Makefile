@@ -29,7 +29,6 @@ start:
 	     --volume /data/gitlab/logs:/var/log/gitlab \
 	     --volume /data/gitlab/data:/var/opt/gitlab \
 	     --volume /data/gitlab/backups:/var/opt/gitlab/backups \
-	     --volume /data/gitlab/sync:/var/opt/gitlab/sync \
 	     --env HOST_UID=$$(id -u) --env HOST_GID=$$(id -g) \
 	     mor1/gitlab-ce-cron:latest
 
