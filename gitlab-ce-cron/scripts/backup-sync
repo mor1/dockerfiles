@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Copyright (C) 2017 Richard Mortier <mort@cantab.net>
 #
@@ -15,16 +15,23 @@ SSH="ssh -p 2222 -i /home/rmm1002/.ssh/gitlabrsync-key"
 SCP="scp -P 2222 -i /home/rmm1002/.ssh/gitlabrsync-key"
 
 # generate the tarballs on the VM from the container via volume mounts
-$SSH $H docker exec -i gitlab /scripts/backup
+#$SSH $H docker exec -i gitlab /scripts/backup
 
 # fetch and extract the tarballs to bigtmp scratch space
 umask 077
-mkdir -p $S/{backups,sync}
+mkdir -p $S/{backups,sync/gitlab}
+
 cd $S
 $SCP $H:/data/gitlab/backups/* ./backups
-for tarball in ./backups/* ; do
-  tar -x -f $tarball -C sync -m
-done
+
+tarball=$(ls -At ./backups/*_gitlab_backup.tar | head -n1)
+tar -x -f $tarball -C sync/gitlab -m
+
+tarball=$(ls -At ./backups/etc-ssh-*.tar | head -n1)
+tar -x -f $tarball -C sync -m
+
+tarball=$(ls -At ./backups/etc-gitlab-*.tar | head -n1)
+tar -x -f $tarball -C sync -m
 
 # rsync the extracted tarballs to backed up filespace
 umask 002
