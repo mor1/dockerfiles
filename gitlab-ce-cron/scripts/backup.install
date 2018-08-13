@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# Copyright (C) 2017 Richard Mortier <mort@cantab.net>
-#
-# Run `backup` script as a cronjob
-
-/usr/bin/crontab <<_EOF
-15 04 * * * docker exec -i gitlab /scripts/backup
-_EOF
