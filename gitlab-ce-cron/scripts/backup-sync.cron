@@ -2,8 +2,8 @@
 #
 # Copyright (C) 2017 Richard Mortier <mort@cantab.net>
 #
-# Installs the `sync` script as a cronjob. Run on the cron server.
+# Installs the `backup-sync` script as a cronjob. Run on the cron server.
 
 /usr/bin/crontab <<_EOF
-15 05 * * * $(pwd -P)/sync
+15 05 * * * $(pwd -P)/backup-sync
 _EOF

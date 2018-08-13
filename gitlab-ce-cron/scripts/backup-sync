@@ -8,17 +8,35 @@
 set -e
 
 H=svr-rmm1002-git.cl.cam.ac.uk
+S=/anfs/bigtmp/rmm1002-gitlab-sync
 D=/usr/groups/netos/gitlab
 
-rsync                                           \
-      --archive                                 \
-      --checksum                                \
-      --compress                                \
-      --delete                                  \
-      --recursive                               \
+# generate the tarballs on the VM from the container via volume mounts
+ssh $H docker exec -i gitlab /scripts/backup
+
+# fetch and extract the tarballs to bigtmp scratch space
+umask 077
+mkdir -p $S/{backups,sync}
+cd $S
+scp $H:/data/gitlab/backups/* ./backups
+for tarball in ./backups/* ; do
+  tar -x -f $tarball -C sync -m
+done
+
+# rsync the extracted tarballs to backed up filespace
+umask 002
+rsync \
+      --archive \
+      --checksum \
+      --compress \
+      --delete \
+      --recursive \
       --rsh="ssh -p 2222 -i /home/rmm1002/.ssh/gitlabrsync-key" \
-      --times                                   \
-    $H:/data/gitlab/sync                        \
+      --times \
+    ./sync \
     $D
 
 chown -R rmm1002:netos $D/sync
+
+# tidy up bigtmp and the VM
+ssh $H sudo rm /data/gitlab/backups/*.tar
