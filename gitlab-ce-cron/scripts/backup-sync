@@ -16,6 +16,8 @@ SCP="scp -P 2222 -i /home/rmm1002/.ssh/gitlabrsync-key"
 
 # generate the tarballs on the VM from the container via volume mounts
 $SSH $H docker exec -i gitlab /scripts/backup
+# make them readable to this script subsequently
+$SSH $H sudo chown rmm1002 /data/gitlab/backups
 
 # fetch and extract the tarballs to bigtmp scratch space
 umask 077
