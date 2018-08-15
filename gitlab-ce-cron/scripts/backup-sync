@@ -22,7 +22,8 @@ umask 077
 mkdir -p $S/{backups,sync/gitlab}
 
 cd $S
-$SCP $H:/data/gitlab/backups/* ./backups
+$SCP $H:/data/gitlab/backups/*.tar ./backups
+$SSH $H sudo rm /data/gitlab/backups/*.tar
 
 tarball=$(ls -At ./backups/*_gitlab_backup.tar | head -n1)
 tar -x -f $tarball -C sync/gitlab -m
@@ -48,5 +49,6 @@ rsync \
 
 chown -R rmm1002:netos $D/sync
 
-# tidy up bigtmp and the VM
-$SSH $H sudo rm /data/gitlab/backups/*.tar
+# tidy up bigtmp
+rm $S/*
+rm -rf $S/sync

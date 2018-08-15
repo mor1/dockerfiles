@@ -14,15 +14,12 @@ cd /var/opt/gitlab
 
 ## builtin gitlab data backup
 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
-LATEST=$(ls -At backups/*_gitlab_backup.tar | head -n1)
 
 ## manually backup gitlab config
 tar cf backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
-LATEST=$(ls -At backups/etc-gitlab-*.tar | head -n1)
 
 ## manually backup container ssh config
 tar cf backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
-LATEST=$(ls -At backups/etc-ssh-*.tar | head -n1)
 
-## finally, fix the permissions on everything
-chown -R $HOST_UID:$HOST_GID backups
+## finally, fix the permissions on the tarballs
+chown -R $HOST_UID:$HOST_GID backups/*.tar
