@@ -12,6 +12,10 @@ umask 0077
 
 cd /var/opt/gitlab
 
+## make directory writable by gitlab data backup script, which drops privs to
+## `git:git`
+chown -R git:git backups/
+
 ## builtin gitlab data backup
 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
 
@@ -21,5 +25,5 @@ tar cf backups/$(date "+etc-gitlab-%s.tar") -C / etc/gitlab
 ## manually backup container ssh config
 tar cf backups/$(date "+etc-ssh-%s.tar") -C / etc/ssh
 
-## finally, fix the permissions on the tarballs
-chown -R $HOST_UID:$HOST_GID backups/*.tar
+## finally, fix the permissions so the results can be synced
+chown -R $HOST_UID:$HOST_GID backups/
