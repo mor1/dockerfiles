@@ -26,13 +26,13 @@ $SCP $H:/data/gitlab/backups/*.tar ./backups
 $SSH $H rm /data/gitlab/backups/*.tar
 
 tarball=$(ls -At ./backups/*_gitlab_backup.tar | head -n1)
-tar -x -f $tarball -C sync/gitlab -m
+tar -x -f $tarball -C sync/gitlab
 
 tarball=$(ls -At ./backups/etc-ssh-*.tar | head -n1)
-tar -x -f $tarball -C sync -m
+tar -x -f $tarball -C sync
 
 tarball=$(ls -At ./backups/etc-gitlab-*.tar | head -n1)
-tar -x -f $tarball -C sync -m
+tar -x -f $tarball -C sync
 
 # rsync the extracted tarballs to backed up filespace
 umask 0002
@@ -41,9 +41,9 @@ rsync \
       --checksum \
       --compress \
       --delete \
+      --partial \
       --recursive \
       --rsh="$SSH" \
-      --times \
     ./sync \
     $D
 
