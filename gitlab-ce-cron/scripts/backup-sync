@@ -42,7 +42,6 @@ rsync \
       --compress \
       --delete \
       --partial \
-      --recursive \
       --rsh="$SSH" \
     ./sync \
     $D

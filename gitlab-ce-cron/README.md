@@ -16,7 +16,7 @@ Per advice from Piete,
   * on `cron-serv[01]`, sync the sync directory visible on the host
       * [./scripts/sync](./scripts/sync)
 
-In both cases, install the two cronjobs using the `.install` scripts provided.
+In both cases, install the `backup-sync.cron` cronjob on the cron server.
 This minimises churn on the filer: unchanged files are made visible.
 
 ## Known Good
