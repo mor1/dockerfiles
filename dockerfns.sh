@@ -105,8 +105,8 @@ pandoc    () { dr -v ~/.pandoc:/root/.pandoc mor1/pandoc:latest "$@" ;}
 pdftk     () { dr mor1/pdftk:latest            "$@" ;}
 phantomjs () { dr mor1/phantomjs:latest        "$@" ;}
 polyml    () { dr mor1/polyml:latest           "$@" ;}
-python2   () { dr mor1/python2:latest          "$@" ;}
 pwclient  () { dr mor1/pwclient:latest         "$@" ;}
+python2   () { dr mor1/python2:latest          "$@" ;}
 python3   () { dr mor1/python3:latest          "$@" ;}
 tpaste    () { dr mor1/tpaste:latest           "$@" 2>/dev/null;}
 travis    () { dr mor1/travis:latest           "$@" ;}
